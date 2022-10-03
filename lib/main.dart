@@ -20,7 +20,9 @@ class _App extends StatelessWidget {
         fontFamily: 'NotoSans',
       ),
       debugShowCheckedModeBanner: false,
-      home: const DefaultLayout(child: LoginScreen()),
+      home: const DefaultLayout(
+        child: LoginScreen(),
+      ),
     );
   }
 }
