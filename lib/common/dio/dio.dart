@@ -37,6 +37,14 @@ class CustomInterceptor extends Interceptor {
   }
 
   @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    print(
+        '[RES] [${response.requestOptions.method}] [${response.requestOptions.uri}]');
+
+    super.onResponse(response, handler);
+  }
+
+  @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     // 401 error
     print('[ERR] [${err.requestOptions.method}] [${err.requestOptions.uri}]');
@@ -70,12 +78,11 @@ class CustomInterceptor extends Interceptor {
 
         await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
         final response = await dio.fetch(options);
+        return handler.resolve(response);
       } on DioError catch (e) {
         return handler.reject(e);
       }
     }
-
-    return handler.resolve(response);
 
     super.onError(err, handler);
   }
