@@ -1,13 +1,12 @@
-import 'package:code_factory_inflearn/common/component/custom_text_form_field.dart';
 import 'package:code_factory_inflearn/common/layout/default_layout.dart';
 import 'package:code_factory_inflearn/user/view/login_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(
-    const _App(),
-  );
+  runApp(const ProviderScope(
+    child: _App(),
+  ));
 }
 
 class _App extends StatelessWidget {
