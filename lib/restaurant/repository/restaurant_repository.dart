@@ -1,5 +1,6 @@
 import 'package:code_factory_inflearn/common/const/data.dart';
 import 'package:code_factory_inflearn/common/dio/dio.dart';
+import 'package:code_factory_inflearn/common/model/pagination_params.dart';
 import 'package:code_factory_inflearn/restaurant/model/restaurant_detail_model.dart';
 import 'package:code_factory_inflearn/restaurant/model/restaurant_model.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -22,7 +23,9 @@ abstract class RestaurantRepository {
 
   @GET('/')
   @Headers({'accessToken': 'true'})
-  Future<CursorPagination<RestuarantModel>> paginate();
+  Future<CursorPagination<RestuarantModel>> paginate({
+    @Queries() PaginationParams? paginationParams = const PaginationParams(),
+  });
 
   @GET('/{id}')
   @Headers({'accessToken': 'true'})
