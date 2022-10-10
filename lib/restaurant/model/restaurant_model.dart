@@ -1,4 +1,4 @@
-import 'package:code_factory_inflearn/common/const/data.dart';
+import 'package:code_factory_inflearn/common/model/model_with_id.dart';
 import 'package:code_factory_inflearn/common/util/data_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,7 +11,8 @@ enum RestaurantPriceRange {
 }
 
 @JsonSerializable()
-class RestuarantModel {
+class RestuarantModel implements IModelWithId {
+  @override
   final String id;
   final String name;
   @JsonKey(fromJson: DataUtils.pathToUrl)

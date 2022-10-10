@@ -1,6 +1,7 @@
 import 'package:code_factory_inflearn/common/const/data.dart';
 import 'package:code_factory_inflearn/common/dio/dio.dart';
 import 'package:code_factory_inflearn/common/model/pagination_params.dart';
+import 'package:code_factory_inflearn/common/repository/base_pagination_repository.dart';
 import 'package:code_factory_inflearn/restaurant/model/restaurant_detail_model.dart';
 import 'package:code_factory_inflearn/restaurant/model/restaurant_model.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -16,11 +17,13 @@ final restaurantRepositoryProvider = Provider<RestaurantRepository>((ref) {
 });
 
 @RestApi()
-abstract class RestaurantRepository {
+abstract class RestaurantRepository
+    implements IBasePaginationRepository<RestuarantModel> {
   // http://$ip/restaurant
   factory RestaurantRepository(Dio dio, {String baseUrl}) =
       _RestaurantRepository;
 
+  @override
   @GET('/')
   @Headers({'accessToken': 'true'})
   Future<CursorPagination<RestuarantModel>> paginate({
